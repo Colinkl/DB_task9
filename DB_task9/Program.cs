@@ -64,11 +64,11 @@ namespace DB_task9
                         Console.WriteLine(supp.CompanyName);
                         supp.Products.ToList().ForEach(x => Console.WriteLine(x.ProductName));
                         break;
-                    case 8: 
-                        var supplier = context.Suppliers.Where(x=> x.SupplierId == 18).First();
+                    case 8:
+                        var supplier = context.Suppliers.Where(x => x.SupplierId == 18).First();
                         supplier.PostalCode = "12345";
                         context.SaveChanges();
-                        Console.WriteLine(context.Suppliers.Where(x=> x.SupplierId == 18).First().PostalCode);
+                        Console.WriteLine(context.Suppliers.Where(x => x.SupplierId == 18).First().PostalCode);
                         break;
                     case 9:
                         var empl = context.Employees.OrderBy(x => x.LastName).Skip(2).Take(5).ToList();
@@ -82,6 +82,9 @@ namespace DB_task9
                         });
                         break;
                     case 11:
+                        var categor = context.Categories.Where(x => x.Products.Where(y => y.SupplierId == 1).Count() > 0).ToList();
+                        categor.ForEach(x=> Console.WriteLine(x.CategoryName));
+                        break;
 
                     default:
                         break;
